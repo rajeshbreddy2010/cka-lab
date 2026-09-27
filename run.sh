@@ -13,7 +13,8 @@ list_labs() {
   echo
   for d in "$LABS_DIR"/*/; do
     name=$(basename "$d")
-    title=$(head -1 "$d/TASK.md" 2>/dev/null | sed 's/^# //')
+    title=$(head -1 "$d/TASK.md" 2>/dev/null || true)
+    title=${title#\# }
     printf "  %-32s %s\n" "$name" "$title"
   done
   echo
