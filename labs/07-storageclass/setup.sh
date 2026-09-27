@@ -3,6 +3,7 @@
 #   - a StorageClass "local-path" (rancher.io/local-path) marked as DEFAULT
 #   - an existing PVC + Deployment that you must NOT modify
 set -euo pipefail
+cd "$(dirname "$0")"
 
 if ! kubectl get ns local-path-storage >/dev/null 2>&1; then
   kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.30/deploy/local-path-storage.yaml
