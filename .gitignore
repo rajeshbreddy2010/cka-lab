@@ -1,0 +1,9 @@
+# Local scratch / generated files some labs may write into the repo dir
+*.log
+*.tmp
+kubeconfig
+*.kubeconfig
+
+# OS/editor noise
+.DS_Store
+*.swp
