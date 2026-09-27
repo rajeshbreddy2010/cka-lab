@@ -86,3 +86,4 @@ labs/<NN-name>/
   won't undo cluster-wide installs (`metrics-server`, cert-manager, a
   NetworkPolicy-enforcing CNI) — remove those manually if you want a
   fully clean cluster again.
+# cka-lab
