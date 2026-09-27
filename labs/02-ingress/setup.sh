@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Builds the "starting state" the exam question assumes:
 #   - ingress-nginx installed (IngressClass "nginx")
-#   - namespace echo-sound
+#   - namespace sound-repeater
 #   - Deployment "echo" listening on 8080
 # It does NOT create the Service or Ingress - that's your job.
 set -euo pipefail
 
-MODE="${1:-kind}"   # kind | existing
-NS=echo-sound
+MODE="${1:-existing}"   # existing | kind
+NS=sound-repeater
 
 if [[ "$MODE" == "kind" ]]; then
   if ! kind get clusters 2>/dev/null | grep -q '^ingress-lab$'; then
@@ -43,4 +43,4 @@ else
 fi
 
 echo
-echo "Lab ready. Your task: create Service echo-service + Ingress echo in namespace $NS."
+echo "Lab ready. Your task: create Service echoserver-service + Ingress echo in namespace $NS."

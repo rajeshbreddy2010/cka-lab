@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-service
-  namespace: echo-sound
+  name: echoserver-service
+  namespace: sound-repeater
 spec:
   type: NodePort
   selector:
@@ -16,7 +16,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: echo
-  namespace: echo-sound
+  namespace: sound-repeater
 spec:
   ingressClassName: nginx
   rules:
@@ -27,6 +27,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: echo-service
+            name: echoserver-service
             port:
               number: 8080
