@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 
 for NS in frontend backend other; do
   kubectl delete namespace "$NS" --ignore-not-found --wait=true

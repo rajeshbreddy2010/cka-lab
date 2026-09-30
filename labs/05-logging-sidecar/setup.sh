@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 
 # ---------- Task A: Deployment synergy-leverager ----------
 cat <<'EOF' | kubectl apply -f -

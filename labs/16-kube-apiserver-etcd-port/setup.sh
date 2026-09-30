@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 
 MANIFEST=/etc/kubernetes/manifests/kube-apiserver.yaml
 BACKUP=/root/kube-apiserver.yaml.good

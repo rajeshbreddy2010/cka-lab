@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 
 NS=relative-fawn
 LABEL_KEY=lab-relative-fawn   # unique key so other labs' cleanup can't remove it

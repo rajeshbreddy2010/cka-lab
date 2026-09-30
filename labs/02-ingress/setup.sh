@@ -5,6 +5,7 @@
 #   - Deployment "echo" listening on 8080
 # It does NOT create the Service or Ingress - that's your job.
 set -euo pipefail
+cd "$(dirname "$0")"
 
 MODE="${1:-existing}"   # existing | kind
 NS=sound-repeater

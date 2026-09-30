@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 
 NS=priority
 # Default: first node that is NOT tainted NoSchedule (skips the control plane)
