@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synergy-leverager
+  namespace: default
+  labels:
+    app: synergy-leverager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synergy-leverager
+  template:
+    metadata:
+      labels:
+        app: synergy-leverager
+    spec:
+      containers:
+      - name: synergy-leverager
+        image: busybox:stable
+        command:
+        - /bin/sh
+        - -c
+        - |
+          i=0; while true; do
+            echo "$(date -u +%FT%TZ) line $i: synergy-leverager running" >> /var/log/synergy-leverager.log;
+            i=$((i+1));
+            sleep 5;
+          done

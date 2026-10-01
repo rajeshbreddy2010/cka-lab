@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: big-corp-app
+  namespace: default
+  labels:
+    app: big-corp-app
+spec:
+  volumes:
+  - name: logs
+    emptyDir: {}
+  containers:
+  - name: big-corp-app
+    image: busybox:stable
+    command:
+    - /bin/sh
+    - -c
+    - |
+      i=0; while true; do
+        echo "$(date -u +%FT%TZ) line $i: big-corp-app running" >> /var/log/big-corp-app.log;
+        i=$((i+1));
+        sleep 5;
+      done
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
+  - name: sidecar
+    image: busybox
+    command: ["/bin/sh", "-c", "tail -n+1 -f /var/log/big-corp-app.log"]
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
