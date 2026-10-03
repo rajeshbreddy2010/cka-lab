@@ -1,7 +1,22 @@
+# Existing workload that must NOT be touched. Bound to a manually-created PV,
+# independent of any StorageClass, so it works even with zero StorageClasses present.
 apiVersion: v1
 kind: Namespace
 metadata:
   name: storage-lab
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-pv
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes: ["ReadWriteOnce"]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: /tmp/storage-lab-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -10,9 +25,11 @@ metadata:
   namespace: storage-lab
 spec:
   accessModes: ["ReadWriteOnce"]
+  storageClassName: ""
   resources:
     requests:
       storage: 100Mi
+  volumeName: data-pv
 ---
 apiVersion: apps/v1
 kind: Deployment
