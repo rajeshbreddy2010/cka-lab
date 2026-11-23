@@ -1,7 +1,8 @@
 ## Hints
 1. `kubectl describe node <node>` shows **Allocatable** and **Allocated resources**.
-2. Other Pods on the node (kube-system, CNI, etc.) already reserve some
-   requests. Only the *free* amount can be shared.
+2. Other Pods on the node (kube-system, CNI, and the `capacity-reserver`
+   in `lab-filler`) already reserve requests. Only the *free* amount can be
+   shared, so use `Allocatable` minus `Allocated resources`.
 3. The scheduler uses the *effective* Pod request: the larger of
    (highest single init container, since they run one after another) and
    (sum of app containers). Set every container the same, otherwise one
